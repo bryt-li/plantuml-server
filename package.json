@@ -1,0 +1,30 @@
+{
+  "name": "plantuml-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "mkdir /tmp/plantuml-server; cp conf/env.dev .env; node index.js",
+    "prod": "mkdir /tmp/plantuml-server; cp conf/env.prod .env ; node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryt-li/plantuml-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryt-li/plantuml-server/issues"
+  },
+  "homepage": "https://github.com/bryt-li/plantuml-server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "crypto": "^1.0.1",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "lodash": "^4.17.5",
+    "node-plantuml": "^0.5.0"
+  }
+}
