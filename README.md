@@ -6,7 +6,7 @@ docker build -t plantuml-server .
 
 ## Run
 ```
-docker run -p 8182:8182 plantuml-server
+docker run -p 9900:8182 plantuml-server
 ```
 
 ## Client Script Example
