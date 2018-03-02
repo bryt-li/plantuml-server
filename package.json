@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
-    "dev": "mkdir /tmp/plantuml-server; cp conf/env.dev .env; node index.js",
-    "prod": "mkdir /tmp/plantuml-server; cp conf/env.prod .env ; node index.js",
+    "dev": "cp conf/env.dev .env; node index.js",
+    "prod": "cp conf/env.prod .env ; node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

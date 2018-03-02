@@ -10,6 +10,13 @@ const bodyParser = require('body-parser')
 var crypto = require('crypto')
 var fs = require('fs')
 
+const HASH_FILE_DIR = "/tmp/plantuml-server"
+try {
+    fs.statSync(HASH_FILE_DIR)
+} catch(e) {
+    fs.mkdirSync(HASH_FILE_DIR)
+}
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
@@ -19,7 +26,7 @@ app.use(function(req, res, next) {
 var textParser = bodyParser.text({type: '*/*'})
 
 app.get('/png/:hash',function(req, res) {
-  	var path = `/tmp/plantuml-server/${req.params.hash}.png`
+  	var path = `${HASH_FILE_DIR}/${req.params.hash}.png`
   	res.setHeader('Content-Type', 'image/png');
 	let readStream = fs.createReadStream(path);
     readStream.on('close', () => {
@@ -43,7 +50,7 @@ app.post('/text', textParser, (request, response) => {
 	}
 
 	var hash = crypto.createHash('md5').update(uml).digest("hex")
-	var path = `/tmp/plantuml-server/${hash}.png`
+	var path = `${HASH_FILE_DIR}/${hash}.png`
 	if (!fs.existsSync(path)) {
 		var wstream = fs.createWriteStream(path)
 		var gen = plantuml.generate(uml, {format: 'png'})
