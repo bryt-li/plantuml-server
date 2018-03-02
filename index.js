@@ -28,7 +28,7 @@ var textParser = bodyParser.text({type: '*/*'})
 app.get('/png/:hash',function(req, res) {
   	var path = `${HASH_FILE_DIR}/${req.params.hash}.png`
   	res.setHeader('Content-Type', 'image/png');
-	let readStream = fs.createReadStream(path);
+    var readStream = fs.createReadStream(path);
     readStream.on('close', () => {
       res.end()
     })
@@ -73,4 +73,12 @@ app.get('/url', (request, response) => {
   })
 })
 
+app.get('/version', (request, response) => {
+  response.json({
+    version: "1.0.0"
+  })
+})
+
+
+console.log(`plantuml server started on: 0.0.0.0:${ENV.PORT}`)
 app.listen(ENV.PORT)
